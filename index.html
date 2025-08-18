@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark">
+  <title>Billig Studentmat – 4 enkla recept</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1>Billig Studentmat</h1>
+      <p class="tagline">4 enkla recept som sparar både tid och pengar</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="controls" aria-label="Filtrering och sök">
+      <div class="search-group">
+        <label for="search" class="visually-hidden">Sök</label>
+        <input id="search" type="search" placeholder="Sök recept eller ingredienser…" autocomplete="off" />
+      </div>
+
+      <fieldset class="filters">
+        <legend>Filter</legend>
+        <label class="chip"><input type="checkbox" value="vegansk"> Veganskt</label>
+        <label class="chip"><input type="checkbox" value="vegetarisk"> Vegetariskt</label>
+        <label class="chip"><input type="checkbox" value="snabbt"> Snabbt (&lt; 20 min)</label>
+        <label class="chip"><input type="checkbox" value="glutenfritt"> Glutenfritt möjligt</label>
+      </fieldset>
+    </section>
+
+    <section id="results" class="grid" aria-live="polite" aria-busy="false"></section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Tips: Köp basvaror i storpack, använd frysta grönsaker och planera veckans mat för att spara ännu mer.</p>
+    </div>
+  </footer>
+
+  <!-- Receptmodal -->
+  <dialog id="recipeModal" class="modal">
+    <form method="dialog">
+      <button class="close-btn" aria-label="Stäng">×</button>
+    </form>
+    <div class="modal-content" role="document">
+      <header class="modal-header">
+        <h2 id="modalTitle">Recept</h2>
+        <div class="meta">
+          <span class="badge" id="modalTime"></span>
+          <span class="badge" id="modalCost"></span>
+          <div id="modalTags" class="tags"></div>
+        </div>
+      </header>
+
+      <section class="servings">
+        <label for="servingsInput">Portioner:</label>
+        <input id="servingsInput" type="number" min="1" step="1" value="2" />
+        <button id="servingsMinus" class="btn" type="button" aria-label="Minska portioner">−</button>
+        <button id="servingsPlus" class="btn" type="button" aria-label="Öka portioner">+</button>
+      </section>
+
+      <section class="columns">
+        <div>
+          <h3>Ingredienser</h3>
+          <ul id="modalIngredients" class="ingredients"></ul>
+          <button id="addToListBtn" class="btn primary" type="button">Lägg till i inköpslista</button>
+        </div>
+        <div>
+          <h3>Gör så här</h3>
+          <ol id="modalSteps" class="steps"></ol>
+        </div>
+      </section>
+    </div>
+  </dialog>
+
+  <!-- Inköpslista -->
+  <dialog id="listDialog" class="modal">
+    <form method="dialog">
+      <button class="close-btn" aria-label="Stäng">×</button>
+    </form>
+    <div class="modal-content" role="document">
+      <header class="modal-header">
+        <h2>Inköpslista</h2>
+      </header>
+      <ul id="shoppingList" class="ingredients"></ul>
+      <div class="list-actions">
+        <button id="copyListBtn" class="btn" type="button">Kopiera</button>
+        <button id="downloadListBtn" class="btn" type="button">Ladda ner .txt</button>
+        <button id="clearListBtn" class="btn danger" type="button">Töm lista</button>
+      </div>
+    </div>
+  </dialog>
+
+  <noscript>
+    <p class="noscript">Aktivera JavaScript för att använda sök, filter och inköpslista.</p>
+  </noscript>
+</body>
+</html>
